@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<extension key="org.civicrm.cvmembershipfilter" type="module">
+  <file>cvmembershipfilter</file>
+  <name>Membership Filter</name>
+  <description>A CiviCRM extension that creates a new page in CiviCRM that displays a list of the current memberships.</description>
+  <license>AGPL-3.0</license>
+  <maintainer>
+    <author>Md. Al-Amin opu</author>
+    <email>alamin.opu10@gmail.com</email>
+  </maintainer>
+  <urls>
+    <url desc="Main Extension Page">http://alaminopu.me/civicrm/cvmembershipfilter/</url>
+    <url desc="Documentation">http://http://alaminopu.me/civicrm/cvmembershipfilter/docs/</url>
+    <url desc="Support">http://http://alaminopu.me/civicrm/cvmembershipfilter/support/</url>
+    <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
+  </urls>
+  <releaseDate>2016-10-09</releaseDate>
+  <version>1.0</version>
+  <develStage>alpha</develStage>
+  <compatibility>
+    <ver>4.2</ver>
+  </compatibility>
+  <comments>This is a new, extremly helpful module</comments>
+  <civix>
+    <namespace>CRM/Cvmembershipfilter</namespace>
+  </civix>
+</extension>
