@@ -124,32 +124,35 @@ function cvmembershipfilter_civicrm_alterSettingsFolders(&$metaDataFolders = NUL
   _cvmembershipfilter_civix_civicrm_alterSettingsFolders($metaDataFolders);
 }
 
-/**
- * Functions below this ship commented out. Uncomment as required.
- *
 
 /**
  * Implements hook_civicrm_preProcess().
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_preProcess
- *
+ */
+
+/*
+
 function cvmembershipfilter_civicrm_preProcess($formName, &$form) {
 
-} // */
+}
 
-/**
+*/
+
+/*
  * Implements hook_civicrm_navigationMenu().
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_navigationMenu
- *
+ */
+
 function cvmembershipfilter_civicrm_navigationMenu(&$menu) {
   _cvmembershipfilter_civix_insert_navigation_menu($menu, NULL, array(
-    'label' => ts('The Page', array('domain' => 'org.civicrm.cvmembershipfilter')),
-    'name' => 'the_page',
-    'url' => 'civicrm/the-page',
+    'label' => ts('Current Memberships', array('domain' => 'org.civicrm.cvmembershipfilter')),
+    'name' => 'cmembership',
+    'url' => 'civicrm/a/#/cmembership',
     'permission' => 'access CiviReport,access CiviContribute',
     'operator' => 'OR',
     'separator' => 0,
   ));
   _cvmembershipfilter_civix_navigationMenu($menu);
-} // */
+}
