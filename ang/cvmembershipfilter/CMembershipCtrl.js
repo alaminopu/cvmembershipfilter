@@ -1,17 +1,17 @@
 (function(angular, $, _) {
 
-  angular.module('cvmembershipfilter').config(function($routeProvider) {
+  angular
+    .module('cvmembershipfilter')
+    .config(function($routeProvider) {
       $routeProvider.when('/cmembership', {
         controller: 'CvmembershipfilterCMembershipCtrl',
         templateUrl: '~/cvmembershipfilter/CMembershipCtrl.html',
-
-        // If you need to look up data when opening the page, list it out
-        // under "resolve".
         resolve: {
-          myContact: function(crmApi) {
-            return crmApi('Contact', 'getsingle', {
-              id: 'user_contact_id',
-              return: ['first_name', 'last_name']
+          CurrentMemberships: function(crmApi) {
+            return crmApi('Membership', 'get', {
+              "sequential": 1,
+              "status_id": "Current",
+              "api.Contact.getsingle": {}
             });
           }
         }
@@ -19,30 +19,22 @@
     }
   );
 
-  // The controller uses *injection*. This default injects a few things:
-  //   $scope -- This is the set of variables shared between JS and HTML.
-  //   crmApi, crmStatus, crmUiHelp -- These are services provided by civicrm-core.
-  //   myContact -- The current contact, defined above in config().
-  angular.module('cvmembershipfilter').controller('CvmembershipfilterCMembershipCtrl', function($scope, crmApi, crmStatus, crmUiHelp, myContact) {
-    // The ts() and hs() functions help load strings for this module.
-    var ts = $scope.ts = CRM.ts('cvmembershipfilter');
-    var hs = $scope.hs = crmUiHelp({file: 'CRM/cvmembershipfilter/CMembershipCtrl'}); // See: templates/CRM/cvmembershipfilter/CMembershipCtrl.hlp
 
-    // We have myContact available in JS. We also want to reference it in HTML.
-    $scope.myContact = myContact;
+  angular
+    .module('cvmembershipfilter')
+    .controller(
+      'CvmembershipfilterCMembershipCtrl', 
+      function($scope, crmApi, crmStatus, crmUiHelp, CurrentMemberships) {
 
-    $scope.save = function save() {
-      return crmStatus(
-        // Status messages. For defaults, just use "{}"
-        {start: ts('Saving...'), success: ts('Saved')},
-        // The save action. Note that crmApi() returns a promise.
-        crmApi('Contact', 'create', {
-          id: myContact.id,
-          first_name: myContact.first_name,
-          last_name: myContact.last_name
-        })
-      );
-    };
-  });
+        $scope.memberships = CurrentMemberships.values;
+        console.log($scope.memberships);
 
+        $scope.getHumanStatus = function(status){
+          var statusList = ["New", "Current", "Grace", "Expired", "Pending", "Cancelled", "Deceased"];
+          var status = parseInt(status);
+          return statusList[status-1];
+        };
+
+      }
+    );
 })(angular, CRM.$, CRM._);

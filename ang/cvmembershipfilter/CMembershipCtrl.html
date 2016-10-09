@@ -1,47 +1,34 @@
 <div class="crm-container">
-  <div crm-ui-debug="myContact"></div>
+  <h3>Current Memberships</h3>
 
-  <form name="myForm" crm-ui-id-scope>
+  <div class="form-item" ng-show="memberships.length">
+    <table class="selector row-highlight cmember" style="position: relative;">
+      <thead class="sticky">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Type</th>
+          <th scope="col">Member Since</th>
+          <th scope="col">Start Date</th>
+          <th scope="col">End Date</th>
+          <th scope="col">Source</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
 
-    <div class="help">
-      <p>{{ts('This is an auto-generated skeletal page.')}}</p>
+      <tbody>
+          <tr ng-repeat="member in memberships">
+            {{ member }}
+            <td>{{ member['api.Contact.getsingle'].display_name }}</td>
+            <td>{{ member.membership_name }}</td>
+            <td>{{ member.join_date }}</td>
+            <td>{{ member.join_date }}</td>
+            <td>{{ member.end_date }}</td>
+            <td>{{ member.source }}</td>
+            <td>{{ getHumanStatus(member.status_id) }}</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
 
-      <p>{{ts('To view more debugging information, edit the URL and include "?angularDebug=1".')}}</p>
-    </div>
-
-    <div crm-ui-accordion="{title: ts('Greeting')}">
-      <p ng-show="myContact.first_name">{{ ts('Hello, %1.', {1: myContact.first_name}) }}</p>
-
-      <p ng-show="!myContact.first_name">{{ ts('Hello, stranger.') }}</p>
-    </div>
-
-    <div crm-ui-accordion="{title: ts('About Me')}">
-      <div class="crm-block">
-        <div class="crm-group">
-          <div crm-ui-field="{name: 'myForm.first_name', title: ts('Name'), help: hs('full_name')}">
-            <input
-              crm-ui-id="myForm.first_name"
-              name="first_name"
-              ng-model="myContact.first_name"
-              class="crm-form-text"
-              placeholder="{{ts('First')}}"
-              />
-            <input
-              crm-ui-id="myForm.last_name"
-              name="last_name"
-              ng-model="myContact.last_name"
-              class="crm-form-text"
-              placeholder="{{ts('Last')}}"
-              />
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <button ng-click="save()">{{ts('Save')}}</button>
-      </div>
-    </div>
-
-  </form>
-
+  <div class="form-item" ng-hide="memberships.length"> Nothing to show.</div>
 </div>

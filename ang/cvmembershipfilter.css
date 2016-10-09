@@ -1,1 +1,5 @@
 /* Add any CSS rules for Angular module "cvmembershipfilter" */
+
+.crm-container .cmember th{
+	color: #333 !important;
+}
