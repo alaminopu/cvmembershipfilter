@@ -1,5 +1,15 @@
 /* Add any CSS rules for Angular module "cvmembershipfilter" */
 
-.crm-container .cmember th{
+.cmember th{
 	color: #333 !important;
+}
+
+.cmember .cm-row{
+	overflow: hidden;
+	margin-top: 20px;
+}
+
+.cmember .cm-column{
+	float: left;
+	width: 25%;
 }

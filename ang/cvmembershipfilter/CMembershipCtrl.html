@@ -1,8 +1,23 @@
-<div class="crm-container">
+<div class="crm-container cmember">
   <h3>Current Memberships</h3>
 
+  <div class="crm-block">
+
+    <div class="cm-row">
+      <div class="cm-column">
+        <label for="start-form">Start From</label>
+        <input id="start-form" class="crm-form-text" placeholder="yyyy-mm-dd" ng-model="dateFilter.startFrom"/>
+      </div>
+
+      <div class="cm-column">
+        <label for="start-to">To</label>
+        <input id="start-to" class="crm-form-text" placeholder="yyyy-mm-dd" ng-model="dateFilter.startTo"/>
+      </div>
+    </div>
+  </div>
+
   <div class="form-item" ng-show="memberships.length">
-    <table class="selector row-highlight cmember" style="position: relative;">
+    <table class="selector row-highlight" style="position: relative;">
       <thead class="sticky">
         <tr>
           <th scope="col">Name</th>
@@ -16,7 +31,7 @@
       </thead>
 
       <tbody>
-          <tr ng-repeat="member in memberships">
+          <tr ng-repeat="member in memberships | StartRangeFilter:dateFilter ">
             {{ member }}
             <td>{{ member['api.Contact.getsingle'].display_name }}</td>
             <td>{{ member.membership_name }}</td>
